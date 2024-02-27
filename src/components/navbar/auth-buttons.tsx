@@ -5,24 +5,32 @@ import { Button, Group } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 
 import { primaryGradient } from "@/constants";
+import { usePathname } from "next/navigation";
+
+const excludedPAth = ["/login", "/signup"];
 
 const AuthButtons = () => {
   const smallScreen = useMediaQuery("(max-width: 991px");
+  const pathname = usePathname();
 
   return (
-    <Group grow={smallScreen}>
-      <Button variant="default" component={Link} href="/sign-in">
-        Log in
-      </Button>
-      <Button
-        variant="gradient"
-        gradient={primaryGradient}
-        component={Link}
-        href="/sign-up"
-      >
-        Sign up
-      </Button>
-    </Group>
+    <>
+      {!excludedPAth.includes(pathname) && (
+        <Group grow={smallScreen}>
+          <Button variant="default" component={Link} href="/login">
+            Log in
+          </Button>
+          <Button
+            variant="gradient"
+            gradient={primaryGradient}
+            component={Link}
+            href="/signup"
+          >
+            Sign up
+          </Button>
+        </Group>
+      )}
+    </>
   );
 };
 

@@ -23,8 +23,8 @@ const SearchEngine = () => {
         <SelectCarMake />
         <SelectDate label="Pickup Date" />
         <SelectDate label="Return Date" />
-        <Button variant="gradient" gradient={primaryGradient}>
-          Search for car
+        <Button variant="gradient" gradient={primaryGradient} miw='100px'>
+          Search
         </Button>
       </Flex>
     </Container>
