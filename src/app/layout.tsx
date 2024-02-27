@@ -6,6 +6,7 @@ import "@mantine/carousel/styles.css";
 import "@mantine/dates/styles.css";
 
 import "./globals.css";
+import Navbar from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: "Car Go Rentals",
@@ -23,7 +24,10 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider>{children}</MantineProvider>
+        <MantineProvider>
+          <Navbar />
+          {children}
+        </MantineProvider>
       </body>
     </html>
   );
