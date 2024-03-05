@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { ToastContainer } from "react-toastify";
+
+import Navbar from "@/components/navbar";
+
+import { UserSessionContextProvider } from "@/context/user-session-context";
 
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
 import "@mantine/dates/styles.css";
 
 import "./globals.css";
-import Navbar from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: "Car Go Rentals",
@@ -23,10 +27,14 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
       <head>
         <ColorSchemeScript />
       </head>
+      
       <body>
         <MantineProvider>
-          <Navbar />
-          {children}
+          <UserSessionContextProvider>
+            <Navbar />
+            {children}
+            <ToastContainer />
+          </UserSessionContextProvider>
         </MantineProvider>
       </body>
     </html>
