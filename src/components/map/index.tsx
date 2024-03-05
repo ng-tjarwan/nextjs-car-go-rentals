@@ -5,13 +5,18 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 import styles from "./styles.module.css";
 
-const Map = () => {
+interface MapProps {
+  height?: string;
+}
+
+const Map: React.FC<MapProps> = ({ height = "300px" }) => {
   return (
-    <Container className={styles.container}>
+    <Container className={styles.container} size="100%">
       <MapContainer
         className={styles.mapContainer}
         center={[51.505, -0.09]}
         zoom={14}
+        style={{ height: height }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

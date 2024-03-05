@@ -11,7 +11,7 @@ import styles from "./styles.module.css";
 
 const SearchEngine = () => {
   return (
-    <Container className={styles.container}>
+    <Container className={styles.container} size="100%">
       <Flex
         gap={{ base: "sm", sm: "lg" }}
         direction={{ base: "column", sm: "row" }}
@@ -23,7 +23,7 @@ const SearchEngine = () => {
         <SelectCarMake />
         <SelectDate label="Pickup Date" />
         <SelectDate label="Return Date" />
-        <Button variant="gradient" gradient={primaryGradient} miw='100px'>
+        <Button variant="gradient" gradient={primaryGradient} miw="100px">
           Search
         </Button>
       </Flex>
