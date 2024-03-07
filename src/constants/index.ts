@@ -3,6 +3,8 @@ import { MantineGradient } from "@mantine/core";
 export const primaryGradient: MantineGradient = { from: "pink", to: "yellow" };
 
 export const currency = "GH₵";
+export const defaultCountry = "Ghana";
+
 export const lowestPrice = 0;
 export const hightestPrice = 10000;
 

@@ -1,13 +1,44 @@
+"use client";
+
 import { Select } from "@mantine/core";
 
-const SelectCountry = () => {
+import { useCountries } from "@/hooks/useCountries";
+
+import { defaultCountry } from "@/constants";
+
+import { optionsFilter } from "@/functions";
+
+interface SelectCountryProps {
+  label?: React.ReactNode;
+  value?: string;
+  onChange?: (value: string | null) => void;
+}
+
+const SelectCountry: React.FC<SelectCountryProps> = ({
+  label,
+  value,
+  onChange,
+}) => {
+  const { countries, isLoading } = useCountries();
+
   return (
     <Select
-      label="Country"
-      placeholder="Jordan"
-      data={["Jordan"]}
+      width="100%"
+      label={label || "Country"}
+      placeholder={defaultCountry}
+      data={
+        countries?.map((country) => ({
+          label: country.name,
+          value: country.id.toString(),
+        })) || []
+      }
+      value={value}
+      onChange={onChange}
       searchable
       nothingFoundMessage="Nothing Found"
+      disabled={isLoading}
+      maxDropdownHeight={280}
+      filter={optionsFilter}
     />
   );
 };

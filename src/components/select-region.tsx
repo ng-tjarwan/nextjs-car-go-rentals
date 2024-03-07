@@ -1,13 +1,42 @@
+"use client";
+
 import { Select } from "@mantine/core";
 
-const SelectRegion = () => {
+import { optionsFilter } from "@/functions";
+import { useRegions } from "@/hooks/useRegions";
+
+interface SelectCountryProps {
+  label?: React.ReactNode;
+  value?: string;
+  selectedCountryId?: number;
+  onChange?: (value: string | null) => void;
+}
+
+const SelectRegion: React.FC<SelectCountryProps> = ({
+  label,
+  value,
+  onChange,
+  selectedCountryId,
+}) => {
+  const { regions, isLoading } = useRegions(selectedCountryId);
+
   return (
     <Select
-      label="Region"
+      label={label || "Region"}
       placeholder="Amman"
-      data={["Amman", "Zarqa", "Irbid", "Madaba", "Al Ramtha", "Mafraq"]}
+      data={
+        regions?.map((region) => ({
+          label: region.name,
+          value: region.id.toString(),
+        })) || []
+      }
+      value={value}
+      onChange={onChange}
       searchable
       nothingFoundMessage="Nothing Found"
+      disabled={isLoading}
+      maxDropdownHeight={280}
+      filter={optionsFilter}
     />
   );
 };

@@ -4,7 +4,10 @@ import { ToastContainer } from "react-toastify";
 
 import Navbar from "@/components/navbar";
 
+import QueryProvider from "@/providers/query-provider";
+
 import { UserSessionContextProvider } from "@/context/user-session-context";
+import { AppContextProvider } from "@/context/app-context";
 
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
@@ -27,15 +30,19 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
       <head>
         <ColorSchemeScript />
       </head>
-      
+
       <body>
-        <MantineProvider>
-          <UserSessionContextProvider>
-            <Navbar />
-            {children}
-            <ToastContainer />
-          </UserSessionContextProvider>
-        </MantineProvider>
+        <QueryProvider>
+          <MantineProvider>
+            <AppContextProvider>
+              <UserSessionContextProvider>
+                <Navbar />
+                {children}
+                <ToastContainer />
+              </UserSessionContextProvider>
+            </AppContextProvider>
+          </MantineProvider>
+        </QueryProvider>
       </body>
     </html>
   );
